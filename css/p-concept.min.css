@@ -1,0 +1,95 @@
+.p-component .c-sectionTitle {
+  padding-block: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.p-component .p-component__text {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  padding: 0 25px;
+  text-align: center;
+}
+.p-component .p-component__text1,
+.p-component .p-component__text2 {
+  margin: 0;
+}
+.p-component .p-component__listItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.p-component .p-component__listItemimg {
+  height: 152px;
+  width: 152px;
+  border-radius: 50%;
+}
+.p-component .p-component__listItemText {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 152px;
+  margin-top: 16px;
+}
+.p-component .p-component__list {
+  margin: 0px;
+  padding: 0px;
+  display: grid;
+  grid-template-columns: 152px 152px;
+  grid-template-rows: 194px 194px 194px 194px;
+  gap: 24px;
+  place-content: center;
+}
+
+.p-promise {
+  background-color: var(--base-color);
+  padding: 64px 0px;
+}
+.p-promise .c-sectionTitle {
+  padding: 0px 0px 56px;
+}
+.p-promise ul {
+  list-style: none;
+}
+.p-promise .p-promise__listTitle {
+  font-size: 1.5rem;
+  color: var(--main-color);
+  font-weight: 500; /* Medium */
+  padding-bottom: 16px;
+  margin: 0;
+  text-align: center;
+}
+.p-promise .p-promise__listText {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--text-color);
+}
+.p-promise .p-promise__listItem {
+  border: 1px solid var(--main-color);
+  border-radius: 8px;
+  padding: 40px 24px 24px 24px;
+  background-color: var(--white);
+  position: relative;
+}
+.p-promise li::before {
+  content: "1";
+  text-align: center;
+  color: var(--white);
+  font-size: 25px;
+  line-height: 50px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: var(--main-color);
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -60px;
+  position: absolute;
+  z-index: 1000;
+}
+.p-promise .p-promise__list {
+  padding: 0 24px;
+}/*# sourceMappingURL=p-concept.min.css.map */

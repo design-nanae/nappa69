@@ -1,0 +1,87 @@
+@use '../2-tools/mixin' as *;
+
+
+//12カラムのグリッドシステム
+.l-columns {
+    display: flex; //フレックスボックスを使用
+    flex-wrap: wrap; //折り返しを有効化
+    column-gap: calc(var(--col-gap)*1%); //カラム間の余白を設定 3.2rem
+
+
+    //配置
+    &--start {
+        //左寄せ
+        justify-content: start;
+    }
+
+    &--center {
+        //中央寄せ
+        justify-content: center;
+    }
+
+    &--end {
+        //右寄せ
+        justify-content: end;
+    }
+
+    &--between {
+        //両端寄せ
+        justify-content: space-between;
+    }
+
+    &--evenly {
+        //均等配置
+        justify-content: space-evenly;
+    }
+
+    &--around {
+        //等間隔配置
+        justify-content: space-around;
+    }
+
+
+    // フレックスアイテムの基本幅
+    &>* { //直接の子要素に適用 &は親要素l-columns、 >*はその子要素全てを指す
+        width: 100%; //デフォルトで100%の幅を設定
+    }
+
+
+    //モバイルバージョン// .l-columns__col## が出来上がる
+    @for $i from 1 through 12 {
+        //1から12までのループ
+        @if $i ==1 {
+
+            //1カラムの時の幅を設定
+            &__col#{$i} {
+                //クラス名を動的に生成
+                width: calc(var(--col-width) * #{$i} * 1%); //1カラムの幅を計算して設定 5.4rem
+            }
+        }
+
+        @else {
+            &__col#{$i} {
+                //クラス名を動的に生成
+                width: calc(var(--col-width) * #{$i} * 1% + var(--col-gap) * #{$i - 1} * 1%); //複数カラム分の幅を計算して設定
+            }
+        }
+    }
+
+    
+    //PCバージョン
+    @include mq { //メディアクエリのミックスインを使用
+        @for $i from 1 through 12 { //1から12までのループ
+            @if $i ==1 { //1カラムの時の幅を設定
+                &__col#{$i}--pc { //クラス名を動的に生成
+                    width: calc(var(--col-width) * #{$i} * 1%); //1カラムの幅を計算して設定 5.4rem
+                }
+            }
+
+            @else {
+                &__col#{$i}--pc { //クラス名を動的に生成
+                    width: calc(var(--col-width) * #{$i} * 1% + var(--col-gap) * #{$i - 1} * 1%); //複数カラム分の幅を計算して設定
+                }
+            }
+        }
+
+    }
+}

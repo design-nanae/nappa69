@@ -1,0 +1,58 @@
+//共通のプロジェクト
+@use '../2-tools/mixin' as*;
+
+// 製品一覧
+.p-products {
+    padding-block: 64px;
+
+    .c-sectionTitle{
+        margin-bottom: 56px;
+    }
+
+    &__list {
+        row-gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    &__listItem {
+        a {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+    }
+
+    &__listItemImg,
+    &__listItemTitle {
+        width: 50%; //画面の半分の画像サイズにする
+    }
+
+    &__listItemTitle {
+        margin-top: 0;
+    }
+
+    &__link{
+        text-align: center;
+    }
+
+    @include mq {
+        &__list {
+            row-gap: 0; //7行目の設定を無効化
+        }
+
+        &__listItem {
+            a {
+                flex-direction: column; //写真とテキストを縦並びにする
+            }
+        }
+
+        &__listItemImg,
+        &__listItemTitle {
+            width: auto; //画面の半分の画像サイズにした設定を無効化
+        }
+
+        &__listItemTitle {
+            text-align: center;
+        }
+    }
+}

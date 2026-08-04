@@ -1,0 +1,12 @@
+{
+    "liveSassCompile.settings.formats": [
+
+        {
+            "format": "expanded", //compressed圧縮
+            "extensionName": ".min.css", //拡張子
+            "savePath": "/css", //保存先フォルダ
+            "savePathReplacementPairs": null //無視でOK
+        }
+    ],
+    "svg.preview.background": "custom"
+}

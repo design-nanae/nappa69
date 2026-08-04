@@ -1,0 +1,12 @@
+scss/
+├── 1-settings/     # 変数、カラーパレット、フォント設定
+├── 2-tools/        # Mixin, Function (CSSは出力しない)
+├── 3-generic/      # リセットCSS, box-sizing設定
+├── 4-elements/     # (FLOCSS: Foundation) HTML要素への直接指定
+├── 5-objects/      # (FLOCSS: Layout) 汎用的な枠組み、グリッド
+├── 6-components/   # (FLOCSS: Component/Project) UIパーツ
+│   ├── _c-button.scss
+│   ├── _c-card.scss
+│   ├── _p-hero.scss
+│   └── _p-news-list.scss
+└── 7-trumps/       # (FLOCSS: Utility) 調整用、!important許容

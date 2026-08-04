@@ -1,0 +1,134 @@
+// 過ごし方ページ
+@use '../2-tools/mixin' as *;
+
+.p-scene__mainvisual {
+    margin-top: 40px;
+    margin-right: 100px;
+}
+
+@include mq {
+    .p-scene__mainvisual {
+        margin-top: 60px;
+        margin-right: 0;
+
+        /* 親要素の幅を突き破って画面左右いっぱいに広げる魔法のコード */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+
+        height: 70vh;
+        /* あるいは 50vh など */
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 画面端まで広がった時、画像が歪まないように必須 */
+        }
+    }
+}
+
+.p-scene__text {
+    margin: 0;
+    padding-inline: 32px;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+
+}
+
+@include mq {
+    .p-scene__text {
+        text-align: center;
+        max-width: 870px;
+        margin-inline: auto;
+
+    }
+}
+
+.p-scene__detail {
+    display: flex;
+    justify-content: center;
+    gap: 20px; // 円の間の余白
+    margin-top: 40px;
+    padding-inline: 32px;
+}
+
+.p-scene__detail li {
+    width: 100px;
+    aspect-ratio: 1 / 1;
+    border: 0.5px solid var(--main-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--main-color);
+    text-align: center;
+    line-height: 1.6;
+    box-sizing: border-box;
+    flex-shrink: 0; 
+}
+
+
+//過ごし方の詳しい内容
+.p-sceneDetail {
+    padding: 76px 32px;
+}
+
+.p-sceneDetail__inner {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+/* SP（縦並び） */
+.p-sceneDetail__img {
+    margin: 24px 0;
+}
+
+.p-sceneDetail__img img {
+    width: 100%;
+    display: block;
+}
+
+.p-sceneDetail__title {
+    font-size: 4rem;
+    color: var(--accent-color);
+    font-family: var(--font-family-en);
+    font-weight: 400;
+    margin: 0;
+}
+
+.p-sceneDetail__subtitle {
+    margin-top: 8px;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.p-sceneDetail__text {
+    margin-top: 16px;
+    font-size: 1.4rem;
+    line-height: 2;
+    font-family: var(--font-family-mincho);
+    color: var(--main-color);
+}
+
+.p-sceneDetail{
+    .c-btn{
+    margin-top: 18px;
+}
+}
+
+@include mq {
+    .p-sceneDetail__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 64px 64px; // 縦 横
+        max-width: 1160px;
+        margin: 0 auto;
+        padding:64px;
+    }
+
+    .p-sceneDetail {
+        padding: 0; // ← 余白リセット（重要）
+    }
+}

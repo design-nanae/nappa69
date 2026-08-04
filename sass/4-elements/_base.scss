@@ -1,0 +1,28 @@
+//ベーススタイル
+//基本的な要素に対するスタイルを定義
+//html, body, a タグに対するスタイルの設定
+
+html{
+    scroll-behavior: smooth; // ページ内リンクする際にスムーズスクロールのアニメーションを有効化
+    font-size: 62.5%; // 基本フォントサイズを10pxに設定（1rem = 10px）
+}
+
+body{
+    font-family: var(--font-family-mincho); // 日本語フォントファミリーを適用
+    font-size: 1.4rem; // 基本フォントサイズを14pxに設定
+    font-weight: normal; // 通常のフォントウェイトを適用
+    line-height: 1.7; // 行間を1.7に設定
+    color: var(--main-color);// テキストカラーを適用
+    margin: 0; // デフォルトのマージンをリセット
+    padding-top: 70px; // 上部に70pxのパディングを追加
+    background-color: var(--base-color); // 背景色を適用
+    }
+
+a{
+    color: var(--main-color); // メインカラーを適用
+    text-decoration: none; // テキストの下線を削除
+}
+
+img{
+    height: auto; // 画像の高さを自動調整
+}

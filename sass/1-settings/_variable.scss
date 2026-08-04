@@ -1,0 +1,23 @@
+//変数ファイル
+:root {
+    //変数の指定の仕方
+    //--変数名: orange;
+
+    //カラー
+    --main-color: #044626;
+    --accent-color: #554C3C;
+    --base-color: #F4F4F4;
+    --accent-base-color1: rgba(220,213,188, 0.3);
+    --accent-base-color2: #F2F0E8;
+    --white: #FFFFFF;
+
+    //フォント
+    --font-family-mincho: "Zen Old Mincho", serif;
+    --font-family-gothic: "Zen Maru Gothic", sans-serif;
+    --font-family-en: "EB Garamond", serif;
+
+    //グリッドシステム用カラムサイズ
+    --col-width:5.4; //カラム幅（rem単位）
+    --col-gap:3.2; //カラム間の余白（rem単位）
+
+}

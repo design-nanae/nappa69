@@ -1,0 +1,126 @@
+// Newsページ
+@use '../2-tools/mixin' as *;
+
+
+.p-newsblock__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.p-newsblock__tag {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    border: 0.5px solid var(--main-color);
+}
+
+/* ニュースリストアイテム */
+.p-newsblock__list {
+    list-style: none;
+    padding-inline: 32px;
+
+}
+
+.p-newsblock__listItem {
+    background-color: var(--accent-base-color1);
+    /* 薄いベージュの背景 */
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+
+.p-newsblock__link {
+    display: block;
+    padding: 32px;
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.p-newsblock__listMeta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.p-newsblock__listDay {
+    font-size: 1.4rem;
+    color: #888;
+}
+
+.p-newsblock__listTag {
+    background-color: var(--main-color);
+    /* 深い緑 */
+    color: var(--white);
+    font-size: 1.0rem;
+    padding: 3px 18px;
+    border-radius: 50px;
+}
+
+.p-newsblock__listText {
+    font-size: 1.6rem;
+    text-decoration: underline;
+    text-decoration-thickness: 0.7px;
+    text-underline-offset: 4px;
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 400;
+    padding-right: 30px; 
+}
+
+.p-newsblock__listArrowbtn {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--main-color);
+    border-right: 2px solid var(--main-color);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+
+.p-news__link {
+  display: flex;
+  justify-content: flex-end; /* 親で右寄せ */
+}
+
+.c-morebtn {
+  display: block;
+  width: 214px;
+  height: 30px;
+  text-align: center;
+  margin: 0; /* ←そのままでOK */
+  margin-left: auto;
+  padding: 32px;
+}
+
+.p-newsblock__more{
+    padding-bottom: 64px;
+}
+
+@include mq {
+  .p-newsblock__link {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .p-newsblock__listMeta {
+    gap: 24px;
+    margin-bottom: 0;
+  }
+
+  .p-newsblock__listArrowbtn {
+    position: static; /* absolute を解除 */
+    margin-left: auto; /* flex の右端に配置 */
+    transform: rotate(45deg);
+  }
+}

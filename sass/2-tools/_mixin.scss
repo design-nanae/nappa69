@@ -1,0 +1,14 @@
+//ミックスイン ブレイクポイント768px
+@mixin mq {
+    @media screen and (min-width:768px) {
+        @content;
+    }
+}
+
+//使う時
+//.sample-class {
+// @include mq{
+// 768px以上のスタイルをここに記述
+// 例:background-color: red; //この部分が@contentで展開される
+// }
+// }

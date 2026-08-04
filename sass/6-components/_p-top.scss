@@ -1,0 +1,1011 @@
+// TOPページ
+@use '../2-tools/mixin' as *;
+
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("https://intp.site/2997/nappa69/img/top/background.webp");
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ローディング背景 */
+.loading {
+    position: fixed;
+    inset: 0;
+    background: #fdfdf8;
+    /* 少し柔らかい白 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease;
+}
+
+.loading.fadeout {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ロゴ */
+.logo {
+    width: 140px;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+
+    animation: fadeUp 1.5s ease forwards,
+        float 3s ease-in-out infinite 1.5s;
+}
+
+/* ふわっと出る */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ゆらゆら */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* ローディング背景 ここまで*/
+
+//メインビジュアル
+.p-topmainvisual {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    /* スマホ縦長 */
+    overflow: hidden;
+    margin: 0;
+    /* 余白を消す */
+    z-index: 1;
+}
+
+.p-topmainvisual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #F4F4F4;
+    z-index: 1;
+}
+
+.p-topmainvisual img {
+    position: relative;
+    z-index: 2;
+}
+
+
+.p-topmainvisual__slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 35% center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.p-topmainvisual__slider img.active {
+    opacity: 1;
+}
+
+/* PC向けスタイル */
+@include mq {
+    .p-topmainvisual {
+        width: 100vw;
+        /* 左右いっぱい */
+        height: 80vh;
+        /* 横長 */
+        margin-left: calc(50% - 50vw);
+        /* ページ中央から左右いっぱいに広げる */
+        margin-right: calc(50% - 50vw);
+    }
+}
+
+//トップページの文字
+
+.p-topmainvisual__catch {
+    font-size: 1.6rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    transform: translateY(-50%);
+    color: var(--white);
+    line-height: 2;
+    font-family: var(--font-family-mincho);
+    letter-spacing: 0.3rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+
+}
+
+@include mq {
+    .p-topmainvisual__catch {
+        right: 100px;
+        font-size: 1.8rem;
+    }
+}
+
+//スクロール文字
+.p-scroll {
+    position: absolute;
+    right: 20px;
+    bottom: -200px;
+
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+}
+
+.p-scroll::after {
+    content: "";
+    position: absolute;
+    right: 11px;
+    bottom: -80px;
+    width: 0.7px;
+    height: 60px;
+    background: var(--accent-color);
+    margin-top: 10px;
+}
+
+//動くベクターの線
+.p-vector_top {
+    position: absolute;
+    top: 165%;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.p-vector_top svg {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin-top: -100px;
+}
+
+@include mq {
+    .p-vector_top svg {
+        margin-top: -250px;
+    }
+}
+
+.line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    stroke: rgba(16, 129, 6, 0.6);
+}
+
+@include mq {
+    .line {
+        // vector-effectを使わない場合の微調整
+        stroke-width: 1.2; // PCでは少し数値を下げて繊細にする
+    }
+}
+
+.line.active {
+    animation: draw 4s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+//スクロールの演出
+.p-scrollCircle {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    /* 中央に配置 */
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* 線の背景 */
+.p-scrollCircle__line {
+    position: relative;
+    width: 1.3px;
+    /* 線は細いまま */
+    height: 120px;
+    /* 固定高さ */
+    background-color: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+/* 流れる白い線 */
+.p-scrollCircle__line::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 1.3px;
+    height: 40px;
+    background-color: #fff;
+    animation: scrollLine 5s ease-in-out infinite;
+}
+
+/* SCROLL文字 */
+.p-scrollCircle__text {
+    font-family: var(--font-family-en);
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    margin-top: 16px;
+    animation: textFloat 5s ease-in-out infinite;
+}
+
+/* アニメーション定義 */
+@keyframes scrollLine {
+    0% {
+        top: -40px;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        top: 120px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 120px;
+        opacity: 0;
+    }
+}
+
+@keyframes textFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-6px);
+        opacity: 0.8;
+    }
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 767px) {
+    .p-scrollCircle {
+        bottom: 20px;
+        /* 左右中央はデスクトップと同じ設定でOK */
+    }
+
+    .p-scrollCircle__line {
+        height: 80px;
+    }
+
+    .p-scrollCircle__text {
+        font-size: 1.3rem;
+    }
+}
+
+
+//私たちについて
+
+.p-aboutus__title {
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+}
+
+
+//コンセプト文字の動き
+.p-aboutus__title p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.p-aboutus__title.active p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+.p-aboutus__text {
+    padding-top: 32px;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+
+}
+
+@include mq {
+    .p-aboutus__text {
+        text-align: center;
+        max-width: 900px;
+        margin-inline: auto;
+
+    }
+}
+
+.p-aboutus__img {
+    padding-top: 42px;
+    width: 170px;
+    margin-inline: auto;
+    position: relative;
+}
+
+@include mq {
+    .p-aboutus__img {
+        padding-top: 76px;
+    }
+}
+
+.p-aboutus__detail {
+    background-color: var(--accent-base-color1);
+    padding: 72px 32px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+
+.p-aboutus__imgflower {
+    position: absolute;
+    right: -100px;
+    bottom: -100px;
+    width: 80px;
+}
+
+.p-aboutus__imgflower img {
+    width: 67px;
+    height: auto;
+
+}
+
+.p-aboutus__scenebtn {
+    position: relative;
+    display: flex;
+    justify-content: right;
+    padding: 32px 32px
+}
+
+@include mq {
+    .p-aboutus__scenebtn {
+        padding-right: 140px;
+        padding-bottom: 15px;
+    }
+}
+
+//２つ目のベクター
+.p-vector {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+
+.p-vector svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+//お知らせ
+.p-news {
+    padding-bottom: 80px;
+}
+
+.p-news__list {
+    background: var(--accent-base-color1);
+    border-radius: 10px;
+    padding: 64px 32px 40px;
+    margin-inline: 32px;
+    max-width: 900px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); // ほんの少し影をつけて質感を出す
+}
+
+@include mq {
+    .p-news__list {
+        margin: 0 auto; // 中央寄せ
+    }
+}
+
+.p-news__list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.p-news__listItem {
+    border-bottom: 1px dashed var(--main-color);
+    padding: 8px 0;
+    max-width: 700px;
+    margin: 0 auto; // 中央寄せ
+
+}
+
+.p-news__listLink {
+    text-decoration: none;
+    color: var(--main-color);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.p-news__listDay {
+    display: block;
+    font-size: 1.3rem;
+    margin: 4px 0;
+}
+
+.p-news__listText {
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 矢印 */
+.p-news__listText::after {
+    content: "";
+    width: 18px;
+    height: 18px;
+
+    background-image: url("../img/top/icon-arrow.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    flex-shrink: 0;
+}
+
+.p-news__link {
+    text-align: center;
+    margin-top: 32px;
+}
+
+
+.p-news__listLink {
+    transition: 0.3s;
+}
+
+.p-news__listLink:hover {
+    opacity: 0.6;
+}
+
+.c-morebtn {
+    padding-top: 48px;
+    padding-bottom: 64px;
+
+}
+
+.c-morebtn:hover {
+    opacity: 0.6;
+}
+
+//メニュービジュアル
+
+.p-Vi {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        //ふわっとアニメーション
+        opacity: 0;
+        transform: translateY(30px);
+        transition: transform 1s ease-out, opacity 1s ease-out;
+    }
+}
+
+.p-Vi img.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@include mq {
+    .p-Vi {
+
+        width: 100vw;
+        /* 左右いっぱい */
+        height: 40vh;
+        /* 横長 */
+        margin-left: calc(50% - 50vw);
+        /* ページ中央から左右いっぱいに広げる */
+        margin-right: calc(50% - 50vw);
+    }
+}
+
+.p-menu__text {
+    margin: 0;
+    padding: 0px 32px 64px;
+    font-size: 1.5rem;
+}
+
+// メニュースクロール
+.p-menuScroll {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 48px;
+}
+
+.p-menuScroll__track {
+    display: flex;
+    /* 4枚分の画像＋隙間を正確に計算 */
+    width: calc((220px + 46px) * 8); // PC用
+    animation: scrollMenu 40s linear infinite;
+}
+
+.p-menuScroll__track img {
+    width: 220px; // PC用サイズ
+    height: 300px;
+    object-fit: cover;
+    margin-right: 46px; // 画像間の隙間
+}
+
+// 横に流れるアニメーション
+@keyframes scrollMenu {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%); // 8枚中半分＝4枚分動かす
+    }
+}
+
+// スマホ用（768px未満）
+@media screen and (max-width: 767px) {
+    .p-menuScroll__track {
+        width: calc((146px + 28px) * 8);
+        animation: scrollMenuMobile 20s linear infinite;
+    }
+
+    .p-menuScroll__track img {
+        width: 146px;
+        height: 200px;
+        margin-right: 28px;
+    }
+
+    @keyframes scrollMenuMobile {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%); // 8枚中半分＝4枚分
+        }
+    }
+}
+
+//詳しいメニューはこちらのボタン
+.p-aboutus__menubtn {
+    display: flex;
+    justify-content: flex-end; // 右寄せ
+    padding: 48px 36px 76px;
+}
+
+//followus
+.p-followus {
+    padding: 100px 32px;
+    max-width: 1160px;
+    margin: 0 auto;
+    background-color: var(--accent-base-color1);
+
+    .c-sectionTitle {
+        padding-left: 0;
+    }
+}
+
+@include mq {
+    .p-followus {
+        max-width: none;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        background-color: var(--accent-base-color1);
+    }
+}
+
+.p-followus__imgList {
+    display: grid;
+    justify-content: center;
+}
+
+
+
+@include mq {
+    .p-followus__imgList {
+        margin: 0;
+        display: flex;
+        gap: 30px;
+    }
+}
+
+.p-followus__imgList img {
+    transition: .4s;
+}
+
+.p-followus__imgList img:hover {
+    transform: scale(1.05);
+    opacity: .8;
+}
+
+.p-followus__imgList_first {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+    width: fit-content;
+    margin: 0;
+}
+
+@include mq {
+    .p-followus__imgList_first {
+        grid-template-columns: repeat(2, 170px);
+        grid-template-rows: repeat(2, 170px);
+    }
+}
+
+
+.p-followus__imgList_second {
+    display: none;
+    margin: 0;
+}
+
+@include mq {
+    .p-followus__imgList_second {
+        display: grid;
+        grid-template-columns: repeat(2, 170px);
+        grid-template-rows: repeat(2, 170px);
+        gap: 30px;
+        width: max-content;
+        margin: 0;
+    }
+}
+
+.p-menu__text {
+    padding-bottom: 0;
+}
+
+.p-followus__btn {
+    display: flex;
+    justify-content: flex-end; // 右寄せ
+    padding: 42px 0 0;
+}
+
+@include mq {
+    .p-followus__listItem {
+        max-width: 1160px;
+        /* 最大幅 */
+        margin: 0 auto;
+        /* 中央寄せ */
+        padding: 0;
+        /* 横の余白は必要に応じて調整 */
+        box-sizing: border-box;
+    }
+}
+
+//ショップインフォメーション
+
+.p-shopinformation__listItem {
+    gap: 24px;
+}
+
+.p-shopinformation__listItem img {
+    width: 100%; // 横幅は親要素いっぱい
+    height: auto; // アスペクト比維持
+    object-fit: cover; // 画像の切れを防ぐ
+    display: block; // 下の隙間を消す
+
+    aspect-ratio: 16 / 9; // デフォルト：スマホ横長
+
+}
+
+
+@include mq {
+    .p-shopinformation__listItem img {
+        aspect-ratio: 3 / 4; // 縦長
+        width: 50%; // 横幅に合わせる
+        height: auto; // 高さを親要素に合わせる
+        border-radius: 10px;
+    }
+}
+
+@include mq {
+    .p-shopinformation__listItem {
+        display: flex;
+        flex-direction: row;
+        margin-inline: 32px;
+
+    }
+}
+
+.p-shopinformation__list {
+    background-color: var(--accent-base-color1);
+    padding: 32px;
+    margin: 32px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); // ほんの少し影をつけて質感を出す
+
+}
+
+
+@include mq {
+    .p-shopinformation__list {
+        margin: 0;
+        width: 50%; // 横幅に合わせる
+        height: auto; // 高さを親要素に合わせる
+    }
+}
+
+
+.p-shopinformation__list dt {
+    padding: 8px;
+    font-weight: 600;
+}
+
+.p-shopinformation__list dd {
+    margin: 0;
+    padding: 0px 8px 8px;
+    border-bottom: 1px dashed var(--main-color);
+}
+
+.p-shopinformation__shopname {
+    font-size: 2.4rem;
+    font-family: var(--font-family-en);
+}
+
+//アクセス情報
+
+.p-access__listItem {
+    gap: 24px;
+    padding-bottom: 64px;
+}
+
+.p-access__googlemap {
+    width: calc(100% - 64px); // 左右に32pxずつの余白を持たせる
+    margin-inline: auto; // これで中央配置になります
+    height: auto;
+    aspect-ratio: 16 / 9;
+
+    // iframe自体の設定
+    iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+}
+
+
+@include mq {
+    .p-access__googlemap {
+        width: 50%; // 横幅を半分に
+        margin-inline: 0; // 中央寄せを解除
+        aspect-ratio: unset; // 高さを内容に合わせる
+        padding-inline: 0; // 余白設定をリセット
+    }
+
+}
+
+@include mq {
+    .p-access__listItem {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 24px;
+        align-items: stretch;
+        margin-inline: 32px;
+    }
+
+    .p-access__googlemap,
+    .p-access__list {
+        flex: 1; // 横幅を均等に
+        height: auto;
+    }
+
+    .p-access__googlemap {
+        aspect-ratio: unset; // 高さを揃えるため解除
+        object-fit: cover;
+    }
+
+    // 中のiframeも親の高さに合わせる
+    .p-access__googlemap iframe {
+        height: 100%;
+    }
+}
+
+.p-access__list {
+    background-color: var(--accent-base-color1);
+    padding: 32px;
+    margin: 32px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); // ほんの少し影をつけて質感を出す
+
+}
+
+
+@include mq {
+    .p-access__list {
+        margin: 0;
+        width: 50%; // 横幅に合わせる
+        height: auto; // 高さを親要素に合わせる
+    }
+}
+
+
+.p-access__list p {
+    padding: 8px;
+    border-bottom: 1px dashed var(--main-color);
+}
+
+.p-access__shopname {
+    font-size: 2.4rem;
+    font-family: var(--font-family-en);
+    margin-top: 0;
+}
+
+//予約方法
+// 予約セクション全体の背景（薄いベージュ系）
+.p-reservation {
+    padding: 0 0 64px;
+    background-color: var(--accent-base-color1); // 既存の薄い背景色
+    text-align: center;
+
+    @include mq {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+}
+
+// タイトルをコンテンツ幅に制限する
+.p-reservation {
+    .c-sectionTitle {
+        max-width: 1162px; // 他のコンテンツと同じ幅
+        margin-inline: auto;
+    }
+}
+
+.p-reservation__text {
+    margin-bottom: 40px;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--main-color);
+    padding-inline: 32px;
+}
+
+// 白いカード部分の共通設定
+.p-reservation__net,
+.p-reservation__phone {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 48px 24px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    max-width: 600px; // PCで見るときに広がりすぎないように
+    margin-inline: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); // ほんの少し影をつけて質感を出す
+}
+
+// 見出し（ネット予約はこちら / 電話での〜）
+.p-reservation__netTitle,
+.p-reservation__phoneTitle {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.p-reservation__netText {
+    font-size: 1.4rem;
+    margin-bottom: 32px;
+    line-height: 1.8;
+    text-align: left;
+    max-width: 400px;
+    margin-inline: auto;
+}
+
+.p-reservation__netBtntext {
+    font-size: 2rem;
+}
+
+// 電話番号ボタンの特殊スタイル
+.c-btn--phone {
+    font-size: 2rem;
+    width: 230px;
+    display: block;
+    /* 前回の修正で追加済み */
+    margin-inline: auto;
+    /* 【追加】これで横軸中央になります */
+    margin-bottom: 8px;
+    /* ボタンと下の「受付時間」との間の距離 */
+}
+
+.p-reservation__phoneText {
+    font-size: 1.4rem;
+    background-color: var(--accent-base-color1); // 受付時間用の薄い緑の背景
+
+    display: inline-block; // blockから変更。これで文字幅になります
+    margin: 16px auto; // 左右をautoにすることで、inline-blockでも中央に配置されます
+    padding: 4px 16px;
+    border-radius: 4px;
+}
+
+.p-reservation__phoneText p {
+
+    margin: 0;
+}
+
+.p-reservation__listItem {
+    padding-inline: 32px;
+}
+
+/* PC版の調整 */
+@include mq {
+    .p-reservation__listItem {
+        max-width: 1162px;
+        display: flex;
+        justify-content: center; // 中央に寄せる
+        gap: 40px; // カード同士の間隔を少し広げるとゆとりが出ます
+        margin-inline: auto; // コンテンツ自体は中央配置
+
+
+        .p-reservation__net,
+        .p-reservation__phone {
+            padding: 48px;
+            width: 100%; // 親（flexアイテム）の幅に合わせる
+            max-width: 500px; // 広がりすぎ防止
+            margin-inline: 0; // flexで制御するためautoを解除
+        }
+    }
+}
+
+
+//スクロールアニメーション
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+
+.fade.active {
+    opacity: 1;
+    transform: translateY(0);
+}

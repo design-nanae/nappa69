@@ -1,0 +1,356 @@
+// ヘッダー、フッター、ナビゲーションのレイアウト
+@use '../2-tools/mixin' as *;
+
+// コンテナ
+.l-block {
+    width: 100%;
+    /* 画面が狭い時は幅100% */
+    max-width: 1160px;
+    /* 最大幅を1440pxに固定 */
+    margin-left: auto;
+    /* 左右自動マージンで中央寄せ */
+    margin-right: auto;
+    padding-left: 0;
+    /* 必要なら左右パディング0 */
+    padding-right: 0;
+    box-sizing: border-box;
+    /* パディングを含めて幅を計算 */
+}
+
+
+// ヘッダー
+.l-header {
+    background-color: var(--base-color);
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-inline: 24px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; //ヘッダーを一番上に表示
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("https://intp.site/2997/nappa69/img/top/background.webp");
+        background-repeat: repeat;
+        background-size: 800px; // 画像の大きさに合わせて調整
+        opacity: 0.1; // ★背景色(var(--main-color))となじませるために透明度を調整
+        pointer-events: none;
+        z-index: -1; // ★ナビ内の文字(navList)より背面に配置
+    }
+
+
+
+
+    &__navIcon {
+        display: flex;
+        flex-direction: row;
+        align-items: center; // ← 垂直中央
+        gap: 12px;
+    }
+
+    // ロゴ
+    &__logo {
+        width: 127px;
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    // ボタン
+    &__navBtn {
+        width: 64px;
+        height: 64px;
+        border: none;
+        background: var(--main-color);
+        border-radius: 100%;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    &__navBtnBarbefore,
+    &__navBtnBarafter {
+        content: '';
+        width: 28px;
+        height: 0.7px;
+        background-color: var(--white);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        transition: .3s;
+
+    }
+
+    &__navBtnBarbefore {
+        top: calc(50% - 9px);
+    }
+
+    &__navBtnBarafter {
+        top: calc(50% - 2px);
+    }
+
+    &__navBtn::after {
+        content: 'menu';
+        color: var(--white);
+        background-color: var(--main-color);
+        font-size: 1.1rem;
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        top: calc(50% + 8px);
+    }
+
+    @at-root body.is-open .l-header__navBtn span {
+        rotate: 45deg;
+        top: 50%;
+    }
+
+    @at-root body.is-open .l-header__navBtn::before {
+        rotate: -45deg;
+        top: 50%;
+    }
+
+    @at-root body.is-open .l-header__navBtn::after {
+        content: 'close';
+    }
+
+    .l-header>* {
+        position: relative;
+        z-index: 1;
+    }
+
+    // ナビゲーション
+    &__nav {
+        position: fixed;
+        inset: 0;
+        background-color: var(--main-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
+        transition: .3s;
+        overflow: hidden;
+        z-index: 10000; // ★他の要素より確実に手前に出す
+
+        // --- ここから追加 ---
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("https://intp.site/2997/nappa69/img/top/background.webp");
+            background-repeat: repeat;
+            background-size: 800px; // 画像の大きさに合わせて調整
+            opacity: 0.1; // ★背景色(var(--main-color))となじませるために透明度を調整
+            pointer-events: none;
+            z-index: -1; // ★ナビ内の文字(navList)より背面に配置
+        }
+
+        @include mq {
+            &::before {
+                 opacity: 0.01; 
+            }
+        }
+
+
+        // --- ここまで追加 ---
+
+        // ナビ内のコンテンツを疑似要素より上に配置
+        &>* {
+            position: relative;
+            z-index: 1;
+        }
+
+
+    }
+
+
+
+
+    // .l-header body.is-open .l-header__nav
+    @at-root body.is-open &__nav {
+        //いったんくくりからぬける
+        visibility: visible; //イベントが発生できる
+        opacity: 1; //不透明化
+    }
+
+
+    &__navClose {
+        position: absolute;
+        right: 16px;
+        top: 8px;
+        width: 64px;
+        height: 64px;
+        border: none;
+        background: var(--white);
+        border-radius: 100%;
+    }
+
+    &__navClose::before,
+    &__navClose::after {
+        content: '';
+        width: 28px;
+        height: 0.7px;
+        background-color: var(--main-color);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+    }
+
+    &__navClose::before {
+        rotate: 28deg;
+
+    }
+
+    &__navClose::after {
+        rotate: -28deg;
+    }
+
+    &__navLogo {
+        width: 125px;
+        margin-bottom: 48px;
+        top: 10px;
+    }
+
+    &__navList {
+        list-style: none;
+        margin: 0;
+        margin-bottom: 30px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    &__navList a {
+        display: flex;
+        flex-direction: row;
+        align-items: center; // ← 垂直中央
+        gap: 12px;
+        padding-block: 10px;
+        color: var(--white);
+
+        &:hover {
+            color: #829A8E;
+        }
+
+    }
+
+
+    &__navItemEn,
+    &__navItemJa {
+        display: block;
+    }
+
+    &__navItemEn {
+        font-family: var(--font-family-en);
+        font-size: 2.4rem;
+        letter-spacing: .1em;
+    }
+
+    &__navItemJa {
+        font-size: 1.2rem;
+    }
+
+    &__navItemsns_green2 {
+        display: none;
+    }
+
+
+    // PC
+    @include mq {
+        padding-inline: 18px 18px;
+
+
+        // ボタン
+        &__navBtn {
+            display: none;
+        }
+
+        // ナビゲーション
+        &__nav {
+            position: static;
+            // position: initial;
+            background-color: transparent;
+            flex-direction: row;
+            flex-grow: 1;
+            justify-content: end;
+            height: 100%;
+
+            //モバイル版で非表示したナビゲーションを表示させる
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &__navClose {
+            display: none;
+        }
+
+        &__navLogo {
+            display: none;
+        }
+
+        &__navList {
+            flex-direction: row;
+            margin-bottom: 0;
+            width: 100%;
+            justify-content: end;
+            height: 100%;
+        }
+
+        &__navItem {
+
+            flex: 0 1 auto;
+            padding-inline: 10px; // 左右に少し余白を作ると綺麗です
+        }
+
+        &__navList a {
+            color: var(--main-color);
+            padding-block: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap:1px;
+        }
+
+        &__navItemEn {
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        &__navItemJa {
+            // display: none;
+            font-size: 0.8rem;;
+        }
+
+        &__navItemsns_white {
+            display: none;
+        }
+
+
+        &__navItemsns_green2 {
+            display: flex;
+            align-items: center;
+            height: 100%; // 親の高さに合わせる
+            margin-top: 2px; // 正の値で下へ、負の値（-2pxなど）で上へ動きます
+            padding-left: 10px;
+
+        }
+
+
+
+
+    }
+
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コンポーネント</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body {
+            background: #ccc;
+            padding-top: 100px;
+        }
+
+        hr {
+            margin-block: 40px;
+        }
+
+        [class*="l-columns__col"] {
+            /*  //クラス名に l-columns__col を含む要素を選択 */
+            outline: 1px solid orange;
+            /* オレンジ色のアウトラインを追加 */
+            background-color: rgba(255, 165, 0, .2);
+            /* 背景を半透明で追加*/
+        }
+    </style>
+
+    <!-- ジャバスクリプトの適用 -->
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <h1>スタイルガイド</h1>
+    <header class="l-header">
+
+        <h1 class="l-header__logo">
+            <a href="index.html">
+                <img src="img/common/logo.svg" alt="HanaCAFE nappa69">
+            </a>
+        </h1>
+
+        <div class="l-header__navIcon">
+            <p class="l-header__navItemsns_green1">
+                <img src="img/common/icon-instagram.svg" alt="instagram">
+            </p>
+
+            <button class="l-header__navBtn" type="button">
+                <span class="l-header__navBtnBarbefore"></span>
+                <span class="l-header__navBtnBarafter"></span>
+            </button>
+
+        </div>
+
+        <nav class="l-header__nav">
+            <button class="l-header__navClose" type="button"></button>
+            <p class="l-header__navLogo">
+                <img src="img/common/logo-white.svg" alt="HanaCAFE nappa69">
+            </p>
+            <ul class="l-header__navList">
+                <li class="l-header__navItem">
+                    <a href="#about">
+                        <span class="l-header__navItemEn">About
+                        </span>
+                        <span class="l-header__navItemJa">私たちについて</span>
+                    </a>
+                </li>
+                <li class="l-header__navItem">
+                    <a href="scene.html">
+                        <span class="l-header__navItemEn">Scene
+                        </span>
+                        <span class="l-header__navItemJa">過ごし方</span>
+                    </a>
+                </li>
+                <li class="l-header__navItem">
+                    <a href="news.html">
+                        <span class="l-header__navItemEn">News
+                        </span>
+                        <span class="l-header__navItemJa">お知らせ</span>
+                    </a>
+                </li>
+                <li class="l-header__navItem">
+                    <a href="menudetail.html">
+                        <span class="l-header__navItemEn">Menu
+                        </span>
+                        <span class="l-header__navItemJa">メニュー</span>
+                    </a>
+                </li>
+                <li class="l-header__navItem">
+                    <a href="#shop">
+                        <span class="l-header__navItemEn">Shop</span>
+                        <span class="l-header__navItemJa">店舗情報</span>
+                    </a>
+                </li>
+                <li class="l-header__navItem">
+                    <a href="#access">
+                        <span class="l-header__navItemEn">Access</span>
+                        <span class="l-header__navItemJa">アクセス情報</span>
+                    </a>
+                </li>
+                <li class="l-header__navItem l-header__navItem--reservation">
+                    <a href="#reservation">
+                        <span class="l-header__navItemEn">Reservation</span>
+                        <span class="l-header__navItemJa">予約方法</span>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="l-header__navItemsns_green2">
+                <img src="img/common/icon-instagram.svg" alt="instagram">
+            </p>
+            <p class="l-header__navItemsns_white">
+                <img src="img/common/icon-instagram-white.svg" alt="instagram">
+            </p>
+        </nav>
+    </header>
+</body>
+
+<h2>レイアウト</h2>
+
+<h3>グリッドシステム</h3>
+<!-- グリッドシステムテスト -->
+<div class="l-columns l-columns--between">
+    <div class="l-columns__col2">2</div>
+    <div class="l-columns__col8">8</div>
+</div>
+<div class="l-columns">
+    <div class="l-columns__col2--pc">2</div>
+    <div class="l-columns__col8--pc">8</div>
+</div>
+
+<h2>コンポーネント</h2>
+
+<h3>ボタン</h3>
+<a href="#" class="c-btn">Button<span class="c-btn--click"></span></a>
+<a href="#" class="c-btn"><span class="c-btn--clickleft"></span>Button</span></a>
+<a href="#" class="c-btn c-btn--phone">Button</a>
+<a href="#" class="c-arrowbtn c-arrowbtn--arrowleft">Button</a>
+
+<a href="#" class="c-morebtn">もっと見る<span class="c-morebtn--moreclick"></span></a>
+
+
+
+<h3>見出し</h3>
+<h2 class="c-sectionTitle">
+    <span class="c-sectionTitle__en">About us</span>
+    <span class="c-sectionTitle__ja">— 私たちについて —</span>
+</h2>
+
+
+<h3>フッターイメージ</h3>
+<div class="l-footerimg">
+    <div class="l-footerimg__img">
+        <img src="https://intp.site/2997/nappa69/img/common/footer.webp" alt="HanaCAFE nappa69">
+    </div>
+    <div class="l-footerimg__logo">
+        <img src="../img/common/logo-white.svg" alt="HanaCAFE nappa69">
+    </div>
+
+</div>
+
+<h3>フッターナビゲーション</h3>
+<nav class="c-footerNav">
+    <p class="copyright">&copy; HanaCAFE nappa69</p>
+    <ul class="c-footerNav__list">
+        <li class="c-footerNav__listItem"><a href="#">Top</a></li>
+        <li class="c-footerNav__listItem"><a href="#">About</a></li>
+        <li class="c-footerNav__listItem"><a href="#">Menu</a></li>
+        <li class="c-footerNav__listItem"><a href="#">News</a></li>
+        <li class="c-footerNav__listItem"><a href="#">Shop</a></li>
+        <li class="c-footerNav__listItem"><a href="#">Access</a></li>
+        <li class="c-footerNav__listItem"><a href="#">Reservation</a></li>
+        <li class="c-footerNav__listItem sns"><a href="#"> <img src="img/common/icon-instagram.svg" alt="instagram"></a>
+        </li>
+    </ul>
+    <div class="c-footerNav__copyright2">
+        <small class="l-footer__copyright">
+            &copy; HanaCAFE nappa69
+        </small>
+        <p class="c-footerNav__listItem sns2">
+            <img src="img/common/icon-instagram.svg" alt="instagram">
+        </p>
+    </div>
+</nav>
+
+<h3>フッターナビゲーション</h3>
+<nav class="c-footerNav">
+    <p class="copyright">&copy; HanaCAFE nappa69</p>
+    <ul class="c-footerNav__list">
+        <li class="c-footerNav__listItem"><a href="#about">About</a></li>
+        <li class="c-footerNav__listItem"><a href="scene.html">Scene</a></li>
+        <li class="c-footerNav__listItem"><a href="menudetail.html">Menu</a></li>
+        <li class="c-footerNav__listItem"><a href="#news">News</a></li>
+        <li class="c-footerNav__listItem"><a href="#shop">Shop</a></li>
+        <li class="c-footerNav__listItem"><a href="#access">Access</a></li>
+        <li class="c-footerNav__listItem"><a href="#reservation">Reservation</a></li>
+    </ul>
+    <div class="c-footerNav__copyright2">
+        <small class="l-footer__copyright">
+            &copy; HanaCAFE nappa69
+        </small>
+    </div>
+</nav>
+
+<h3>トップに戻るボタン</h3>
+<a href="#" class="c-backToTop">
+    <span></span>
+</a>
+
+<h3>予約ボタン</h3>
+<a href="#reservation" class="c-fixed-btn">
+    ご予約はこちら<img src="img/common/icon-calender.svg" alt="カレンダー"></a>
+</a>
+
+
+</body>
+
+
+</html>
